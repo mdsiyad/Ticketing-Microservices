@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { RequestValidationError } from "../errors/request-validation-errors";
-import { DatabaseConnectionError } from "../errors/database-connection-error";
 import { User } from "../models/user";
 import { BadRequestError } from "../errors/bad-request-error";
 import jwt from 'jsonwebtoken'
@@ -33,7 +32,7 @@ body('password').trim().isLength({ min: 6, max: 20 }).withMessage('Password must
         const userJwt = jwt.sign({
             id: user.id,
             email: user.email
-        }, 'secret')
+        }, process.env.JWT_KEY!)
 
         req.session = {
             jwt:userJwt
