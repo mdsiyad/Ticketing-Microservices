@@ -1,8 +1,7 @@
 import express, { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
-import { RequestValidationError } from "../errors/request-validation-errors";
 import { User } from "../models/user";
-import { BadRequestError } from "../errors/bad-request-error";
+import { BadRequestError,RequestValidationError } from "@microgittix/common";
 import jwt from 'jsonwebtoken'
 // var jwt = require('jsonwebtoken');
 
@@ -26,7 +25,6 @@ body('password').trim().isLength({ min: 6, max: 20 }).withMessage('Password must
 
 
         //save user to database
-        console.log('request came')
         const user = new User({ email, password });
         const savedUser = await user.save();
         const userJwt = jwt.sign({
