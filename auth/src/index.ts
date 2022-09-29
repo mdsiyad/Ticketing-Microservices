@@ -6,7 +6,7 @@ import app from "./app";
 //connect to mongoDb
 const start = async () => {
 
-  console.log("Auth Services Runs ...");
+  console.log("Auth Services starts ...");
   if(!process.env.MONGO_URI){
     throw new Error('MONGO_URI Must Be Defined')
   }
