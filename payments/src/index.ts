@@ -10,6 +10,8 @@ import { OrderCreatedListener } from "./events/listeners/order-created-listener"
 //connect to mongoDb
 const start = async () => {
 
+  console.log('server started ...')
+
   if(!process.env.MONGO_URI){
     throw new Error('MONGO_URI Must Be Defined')
   }
