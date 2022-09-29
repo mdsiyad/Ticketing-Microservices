@@ -13,6 +13,8 @@ const OrderShow = ({ order, currentUser }) => {
         },
         onSuccess: (payment) => Router.push('/orders/[orderId]',`/orders/${order.id}`)
     });
+
+ 
     
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const OrderShow = ({ order, currentUser }) => {
             return () => {
                 clearInterval(timerId);
             }
-    }, [order]);
+    }, []);
         
     if (timeLeft < 0) {
         return <div>Order Expired</div>;
