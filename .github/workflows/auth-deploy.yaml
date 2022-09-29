@@ -11,6 +11,6 @@ jobs:
       - name: Build the Docker image
         run: cd auth && docker build . -t auth
       - name: Login to DockerHub
-        run: docker login -u 535066 -P ${{ secrets.DOCKER_TOKEN }}
+        run: docker login -u 535066 -p ${{ secrets.DOCKER_TOKEN }}
       - name: Push the Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/auth
