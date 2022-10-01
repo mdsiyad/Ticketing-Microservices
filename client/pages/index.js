@@ -24,7 +24,7 @@ const Home = ({currentUser, tickets}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Tickets</h1>
+      <h1>Tickets List</h1>
       <table className="table">
         <thead>
           <tr>
