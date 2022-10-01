@@ -14,3 +14,9 @@ jobs:
         run: docker login -u 535066 -p ${{ secrets.DOCKER_TOKEN }}
       - name: Push the Docker image
         run: docker tag auth 535066/auth && docker push 535066/auth
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save ticketing
+      - run: kubectl rollout restart deployment auth-depl
+      
