@@ -1,0 +1,22 @@
+name: client-deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: cd client && docker build . -t client
+      - name: Login to DockerHub
+        run: docker login -u 535066 -p ${{ secrets.DOCKER_TOKEN }}
+      - name: Push the Docker image
+        run: docker tag client 535066/client && docker push 535066/client
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save ticketing
+      - run: kubectl rollout restart deployment client-depl
+      
