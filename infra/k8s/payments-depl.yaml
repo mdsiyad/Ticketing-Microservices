@@ -15,7 +15,7 @@ spec:
       containers:
         
         - name: payments
-          image: us.gcr.io/ticketing-dev-357505/payments
+          image: 535066/payments
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
